@@ -1,2 +1,2 @@
 linha 01 digitada no PC 
-linha 02 digitada no github
+linha 02 digitada no Github
