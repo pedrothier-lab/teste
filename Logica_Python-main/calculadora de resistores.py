@@ -59,9 +59,6 @@ CORES_DIGITOS = list(DIGITOS.keys())
 CORES_TOLERANCIA = list(TOLERANCIAS.keys())
 
 
-# ============================================================
-# FUNÇÕES AUXILIARES
-# ============================================================
 
 def formatar_resistencia(valor):
     """
@@ -114,13 +111,11 @@ def calcular_cores(valor):
     if valor <= 0:
         raise ValueError("O valor deve ser maior que zero.")
 
-    # Precisamos representar o valor usando:
-    # dois dígitos significativos + multiplicador.
+
     for multiplicador in sorted(MULTIPLICADORES.values()):
         base = valor / multiplicador
 
-        # Procuramos uma representação com exatamente
-        # dois dígitos significativos inteiros.
+
         if base >= 10 and base <= 99 and base == int(base):
             base = int(base)
 
@@ -140,9 +135,7 @@ def calcular_cores(valor):
     )
 
 
-# ============================================================
-# CLASSE PRINCIPAL
-# ============================================================
+
 
 class SAPZApp:
 
@@ -160,9 +153,6 @@ class SAPZApp:
         self.atualizar_modo()
 
 
-    # ========================================================
-    # INTERFACE
-    # ========================================================
 
     def criar_interface(self):
 
@@ -182,9 +172,6 @@ class SAPZApp:
         subtitulo.pack(pady=(0, 15))
 
 
-        # ----------------------------------------------------
-        # ESCOLHA DO MODO
-        # ----------------------------------------------------
 
         frame_modo = tk.LabelFrame(
             self.root,
@@ -214,17 +201,12 @@ class SAPZApp:
         ).pack(side="left", padx=30)
 
 
-        # ----------------------------------------------------
-        # ÁREA DE CONTEÚDO
-        # ----------------------------------------------------
+
 
         self.frame_conteudo = tk.Frame(self.root)
         self.frame_conteudo.pack(fill="x", padx=30, pady=15)
 
 
-        # ====================================================
-        # MODO CORES -> VALOR
-        # ====================================================
 
         self.frame_cores = tk.LabelFrame(
             self.frame_conteudo,
@@ -234,7 +216,8 @@ class SAPZApp:
             pady=15
         )
 
-        # Faixa 1
+
+
         tk.Label(
             self.frame_cores,
             text="1ª faixa:"
@@ -248,8 +231,6 @@ class SAPZApp:
         )
         self.combo_cor1.set("Marrom")
         self.combo_cor1.grid(row=0, column=1, padx=10, pady=8)
-
-        # Faixa 2
         tk.Label(
             self.frame_cores,
             text="2ª faixa:"
@@ -264,7 +245,6 @@ class SAPZApp:
         self.combo_cor2.set("Preto")
         self.combo_cor2.grid(row=1, column=1, padx=10, pady=8)
 
-        # Faixa 3
         tk.Label(
             self.frame_cores,
             text="Multiplicador:"
@@ -279,7 +259,6 @@ class SAPZApp:
         self.combo_cor3.set("Vermelho")
         self.combo_cor3.grid(row=2, column=1, padx=10, pady=8)
 
-        # Tolerância
         tk.Label(
             self.frame_cores,
             text="Tolerância:"
@@ -308,16 +287,14 @@ class SAPZApp:
             pady=20
         )
 
-        # Eventos
+
+
         self.combo_cor1.bind("<<ComboboxSelected>>", self.atualizar_cores_valor)
         self.combo_cor2.bind("<<ComboboxSelected>>", self.atualizar_cores_valor)
         self.combo_cor3.bind("<<ComboboxSelected>>", self.atualizar_cores_valor)
         self.combo_tol_cores.bind("<<ComboboxSelected>>", self.atualizar_cores_valor)
 
 
-        # ====================================================
-        # MODO VALOR -> CORES
-        # ====================================================
 
         self.frame_valor = tk.LabelFrame(
             self.frame_conteudo,
@@ -400,9 +377,7 @@ class SAPZApp:
         )
 
 
-        # ----------------------------------------------------
-        # ÁREA DO RESISTOR
-        # ----------------------------------------------------
+
 
         self.frame_resistor = tk.LabelFrame(
             self.root,
@@ -428,7 +403,6 @@ class SAPZApp:
         self.canvas.pack()
 
 
-        # Texto explicativo
         self.label_info = tk.Label(
             self.root,
             text="Selecione um modo para começar.",
@@ -436,11 +410,6 @@ class SAPZApp:
             fg="#555555"
         )
         self.label_info.pack(pady=(0, 10))
-
-
-    # ========================================================
-    # MUDAR MODO
-    # ========================================================
 
     def atualizar_modo(self):
 
@@ -466,10 +435,6 @@ class SAPZApp:
 
             self.calcular_valor_cores()
 
-
-    # ========================================================
-    # CORES -> VALOR
-    # ========================================================
 
     def atualizar_cores_valor(self, event=None):
 
@@ -498,10 +463,6 @@ class SAPZApp:
                 text=f"Erro: {erro}"
             )
 
-
-    # ========================================================
-    # VALOR -> CORES
-    # ========================================================
 
     def calcular_valor_cores(self):
 
@@ -535,21 +496,14 @@ class SAPZApp:
                 text="Valor inválido."
             )
 
-            # Desenha o resistor apenas com cores padrão
             self.desenhar_resistor(
                 ["Marrom", "Preto", "Vermelho", "Dourado"]
             )
 
 
-    # ========================================================
-    # DESENHAR RESISTOR
-    # ========================================================
-
     def desenhar_resistor(self, cores):
 
         self.canvas.delete("all")
-
-        # Coordenadas
         centro_y = 125
 
         inicio = 100
@@ -557,10 +511,6 @@ class SAPZApp:
 
         corpo_inicio = 230
         corpo_fim = 550
-
-        # ----------------------------------------------------
-        # Fios
-        # ----------------------------------------------------
 
         self.canvas.create_line(
             inicio,
@@ -580,9 +530,6 @@ class SAPZApp:
             width=6
         )
 
-        # ----------------------------------------------------
-        # Corpo do resistor
-        # ----------------------------------------------------
 
         self.canvas.create_polygon(
             corpo_inicio,
@@ -605,11 +552,7 @@ class SAPZApp:
             outline="#8B6F47",
             width=2
         )
-
-        # ----------------------------------------------------
-        # Faixas
-        # ----------------------------------------------------
-
+    
         larguras = [30, 30, 30, 30]
 
         posicoes = [
