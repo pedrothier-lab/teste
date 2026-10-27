@@ -1,0 +1,23 @@
+[
+    {
+        "id": 2,
+        "descricao": "desep",
+        "valor": 800.0,
+        "tipo": "Despesa",
+        "data": "26/10/2026 19:16"
+    },
+    {
+        "id": 3,
+        "descricao": "skskks",
+        "valor": 1000.0,
+        "tipo": "Receita",
+        "data": "26/10/2026 19:18"
+    },
+    {
+        "id": 4,
+        "descricao": "eppepe",
+        "valor": 100.0,
+        "tipo": "Despesa",
+        "data": "26/10/2026 19:18"
+    }
+]
