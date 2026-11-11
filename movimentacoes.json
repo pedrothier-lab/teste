@@ -19,5 +19,12 @@
         "valor": 100.0,
         "tipo": "Despesa",
         "data": "26/10/2026 19:18"
+    },
+    {
+        "id": 5,
+        "descricao": "alimentos",
+        "valor": 100.0,
+        "tipo": "Receita",
+        "data": "11/11/2026 20:50"
     }
 ]
